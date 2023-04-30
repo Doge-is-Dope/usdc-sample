@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import "../src/IProxy.sol";
 import "../src/FiatTokenV3_2.sol";
 
-contract MyContractTest is Test {
+contract TestFiatTokenV3_2 is Test {
     address constant USDC_PROXY = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     address constant USDC_ADMIN = 0x807a96288A1A408dBC13DE2b1d087d10356395d2;
     address constant USDC_V2_IMPL = 0xa2327a938Febf5FEC13baCFb16Ae10EcBc4cbDCF; // FiatTokenV2

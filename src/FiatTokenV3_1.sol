@@ -17,6 +17,10 @@ contract FiatTokenV3 is FiatTokenV2_1 {
         whitelist[_addr] = true;
     }
 
+    function removeFromWhitelist(address _addr) external {
+        delete whitelist[_addr];
+    }
+
     function isWhiteListed(address _addr) external view returns (bool) {
         return whitelist[_addr];
     }
