@@ -26,19 +26,18 @@ contract FiatTokenV3 is FiatTokenV2_1 {
     }
 
     /// @dev Since transfer in V2 is not virtual, we can't override it. Create a new function instead.
-    function newTransfer(
-        address _to,
-        uint256 _value
-    ) external onlyWhitelisted returns (bool) {
+    function transfer(address _to, uint256 _value)
+        external
+        override(FiatTokenV1, IERC20)
+        onlyWhitelisted
+        returns (bool)
+    {
         _transfer(msg.sender, _to, _value);
         return true;
     }
 
     /// @dev Since mint in V2 is not virtual, we can't override it. Create a new function instead.
-    function newMint(
-        address _to,
-        uint256 _amount
-    ) external onlyWhitelisted returns (bool) {
+    function newMint(address _to, uint256 _amount) external onlyWhitelisted returns (bool) {
         require(_to != address(0), "FiatTokenV3: mint to the zero address");
         require(_amount > 0, "FiatTokenV3: mint amount not greater than 0");
 

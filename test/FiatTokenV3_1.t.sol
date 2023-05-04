@@ -54,9 +54,7 @@ contract TestFiatTokenV3_1 is Test {
     function testUpgrade() public {
         vm.startPrank(admin);
         // Assert the implementation can not be set to address(0x0)
-        vm.expectRevert(
-            "Cannot set a proxy implementation to a non-contract address"
-        );
+        vm.expectRevert("Cannot set a proxy implementation to a non-contract address");
         proxy.upgradeTo(address(0x0));
 
         // Assert the implementation is tokenV2
@@ -87,14 +85,14 @@ contract TestFiatTokenV3_1 is Test {
 
         // whitelisted user1 can transfer to user2
         vm.startPrank(user1);
-        tokenV3.newTransfer(user2, 1 ether);
+        tokenV3.transfer(user2, 1 ether);
         assertEq(tokenV3.balanceOf(user2), 1 ether);
         vm.stopPrank();
 
         // non-whitelisted user2 can NOT transfer to user1
         vm.startPrank(user2);
         vm.expectRevert("not whitelisted");
-        tokenV3.newTransfer(user1, 0.5 ether);
+        tokenV3.transfer(user1, 0.5 ether);
         vm.stopPrank();
 
         // whitelisted user1 can mint tokens
